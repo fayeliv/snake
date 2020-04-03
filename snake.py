@@ -1,5 +1,6 @@
 import pygame, sys
 from pygame.locals import *
+import math, random
 
 # set up pygame
 pygame.init()
@@ -12,7 +13,7 @@ pygame.display.set_caption('Hello world!')
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
+
 
 # set up fonts
 basicFont = pygame.font.SysFont(None, 48)
@@ -53,16 +54,35 @@ windowSurface.blit(text, textRect)
 
 # draw the window onto the screen
 '''
+
+#random object appearing
+
+
+"""""""""def get_random_point(radius):
+    while True:
+        # Generate the random point
+        x = random.randint(-radius, radius)
+        y = random.randint(-radius, radius)
+        # Check that it is inside the circle
+        if math.sqrt(x ** 2 + y ** 2) < radius:
+            # Return it
+            return (x, y)
+            """""""""
+        
+
 RED = (255, 0, 0)
 BLACK = (0, 0, 0)
+BLUE = (0, 0, 255)
 
 x = 1
 y = 1
 speed = 10
 lijst = [200,150,50,50]
-
-pygame.display.update()
 clock = pygame.time.Clock()
+
+x_random = random.randint(0,100)
+y_random = random.randint(0,100)
+
 # run the game loop
 while True:
     for event in pygame.event.get():
@@ -72,6 +92,7 @@ while True:
             
     
     
+    
     clock.tick(30)
     pygame.event.pump()
     # a key has been pressed
@@ -79,8 +100,7 @@ while True:
     
     if keyinput[pygame.K_ESCAPE]:
         raise SystemExit
-    
-    
+
     
     if keyinput[pygame.K_LEFT]:
         lijst[0] -= speed
@@ -90,12 +110,18 @@ while True:
         lijst[1] -= speed
     elif keyinput[pygame.K_DOWN]:
         lijst[1] += speed
+    
+    
+    
+
         
     windowSurface.fill(BLACK)
+    pygame.draw.rect(windowSurface,RED,[x_random, y_random,lijst[2],lijst[3]])
     pygame.draw.rect(windowSurface,RED,lijst)
     pygame.display.update()
-            
-            
+    
+  
+
             
             
             
