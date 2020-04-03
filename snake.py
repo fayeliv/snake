@@ -9,7 +9,6 @@ windowSurface = pygame.display.set_mode((500, 400), 0, 32)
 pygame.display.set_caption('Hello world!')
 '''
 # set up the colors
-BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
@@ -55,16 +54,51 @@ windowSurface.blit(text, textRect)
 # draw the window onto the screen
 '''
 RED = (255, 0, 0)
+BLACK = (0, 0, 0)
 
 x = 1
 y = 1
+speed = 10
+lijst = [200,150,50,50]
 
-pygame.draw.circle(windowSurface, RED, (300, 50), 0)
 pygame.display.update()
-
+clock = pygame.time.Clock()
 # run the game loop
 while True:
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+            
+    
+    
+    clock.tick(30)
+    pygame.event.pump()
+    # a key has been pressed
+    keyinput = pygame.key.get_pressed()
+    
+    if keyinput[pygame.K_ESCAPE]:
+        raise SystemExit
+    
+    
+    
+    if keyinput[pygame.K_LEFT]:
+        lijst[0] -= speed
+    elif keyinput[pygame.K_RIGHT]:
+        lijst[0] += speed
+    elif keyinput[pygame.K_UP]:
+        lijst[1] -= speed
+    elif keyinput[pygame.K_DOWN]:
+        lijst[1] += speed
+        
+    windowSurface.fill(BLACK)
+    pygame.draw.rect(windowSurface,RED,lijst)
+    pygame.display.update()
+            
+            
+            
+            
+            
+            
+            
+            
