@@ -6,8 +6,8 @@ pygame.init()
 
 # set up the window
 windowSurface = pygame.display.set_mode((500, 400), 0, 32)
-#pygame.display.set_caption('Hello world!')
-
+pygame.display.set_caption('Hello world!')
+'''
 # set up the colors
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -53,6 +53,13 @@ del pixArray
 windowSurface.blit(text, textRect)
 
 # draw the window onto the screen
+'''
+RED = (255, 0, 0)
+
+x = 1
+y = 1
+
+pygame.draw.circle(windowSurface, RED, (300, 50), 0)
 pygame.display.update()
 
 # run the game loop
