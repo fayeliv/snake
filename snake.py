@@ -121,7 +121,12 @@ while True:
     pygame.display.update()
     
   
+#TO DO
+#als random blokje geraakt wordt: verdwijnen nieuw blokje verschijnen
 
+#random kleur verschijnend bloktje
+    
+# ander blokje vergroot
             
             
             
