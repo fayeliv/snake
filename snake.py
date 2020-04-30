@@ -6,8 +6,8 @@ import math, random
 pygame.init()
 
 # set up the window
-windowSurface = pygame.display.set_mode((500, 400), 0, 32)
-pygame.display.set_caption('Hello world!')
+
+pygame.display.set_caption('Hello world! Play snake yohoo')
 '''
 # set up the colors
 WHITE = (255, 255, 255)
@@ -68,7 +68,7 @@ windowSurface.blit(text, textRect)
             # Return it
             return (x, y)
             """""""""
-        
+   
 
 RED = (255, 0, 0)
 BLACK = (0, 0, 0)
@@ -77,11 +77,45 @@ BLUE = (0, 0, 255)
 x = 1
 y = 1
 speed = 10
-lijst = [200,150,50,50]
+# x, y ,w ,h
+lijst = [grid.size_width, grid.size_height,15,15]
 clock = pygame.time.Clock()
 
-x_random = random.randint(0,100)
-y_random = random.randint(0,100)
+class Grid:
+    height = 20
+    width = 35
+    
+    size_height = 15
+    size_width = 15
+    
+grid = Grid()
+    
+    
+windowSurface = pygame.display.set_mode((grid.width * grid.size_width , grid.height * grid.size_height ), 0, 32)
+    
+class Snack:
+
+    # Class Attribute
+    color = 'red'
+    height = 15
+    width = 15
+    x_coo = 0
+    y_coo = 0
+    
+    
+    def random(self):
+        self.x_coo = random.randint(0,100)
+        self.y_coo = random.randint(0,100)
+        
+    
+    # Initializer / Instance Attributes
+    def __init__(self, color):
+        self.color = color
+        self.random()
+        
+
+snack = Snack('green')
+dir = 'down'
 
 # run the game loop
 while True:
@@ -90,10 +124,10 @@ while True:
             pygame.quit()
             sys.exit()
             
+
     
     
-    
-    clock.tick(30)
+    clock.tick(2)
     pygame.event.pump()
     # a key has been pressed
     keyinput = pygame.key.get_pressed()
@@ -102,33 +136,50 @@ while True:
         raise SystemExit
 
     
+    
     if keyinput[pygame.K_LEFT]:
-        lijst[0] -= speed
+        dir = 'left'
     elif keyinput[pygame.K_RIGHT]:
-        lijst[0] += speed
+        dir = 'right'
     elif keyinput[pygame.K_UP]:
-        lijst[1] -= speed
+        dir = 'up'
     elif keyinput[pygame.K_DOWN]:
+        dir = 'down'
+    
+    if dir == 'left':
+        lijst[0] -= speed
+    elif dir == 'right':
+        lijst[0] += speed
+    elif dir == 'up':
+        lijst[1] -= speed
+    elif dir == 'down':
         lijst[1] += speed
-    
-    
-    
-
         
+    #achtergrond zwart
     windowSurface.fill(BLACK)
-    pygame.draw.rect(windowSurface,RED,[x_random, y_random,lijst[2],lijst[3]])
+    #snack (surface,x,y,h,w)
+    pygame.draw.rect(windowSurface, BLUE, (snack.x_coo, snack.y_coo, snack.height, snack.width))
+    #snake
     pygame.draw.rect(windowSurface,RED,lijst)
-    pygame.display.update()
     
+    #
+    pygame.display.update()
+
+
+
+
+
   
 #TO DO
 #als random blokje geraakt wordt: verdwijnen nieuw blokje verschijnen
+    
+# denk na over de matrix (voorstelling, bewegen erin) coordinaten of 1,1 ->10,10; 2,2 -> 20,20 
 
 #random kleur verschijnend bloktje
     
 # ander blokje vergroot
             
-            
+# Faye's hoofd wordt snake
             
             
             
